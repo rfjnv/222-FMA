@@ -1,0 +1,108 @@
+.pdp {
+  display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap);
+  padding-right: var(--margin);
+  align-items: start;
+}
+
+/* Gallery: lead image full width, then pairs. Bleeds to the left edge. */
+.gallery { grid-column: 1 / 9; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+.gallery__item { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: var(--c-limestone-2); }
+.gallery__item--lead { grid-column: 1 / -1; }
+.gallery__item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gallery__counter { display: none; }
+
+.info { grid-column: 9 / 13; align-self: stretch; }
+.info__inner {
+  position: sticky; top: calc(var(--header-h) + 8px);
+  display: grid; gap: 22px; padding: 32px 0 48px clamp(8px, 2vw, 40px);
+}
+.info__title { font-size: clamp(2rem, 1.3rem + 1.4vw, 2.9rem); line-height: 1; }
+.info__price { font-size: var(--fs-body); margin-top: -10px; }
+.info__block { position: relative; }
+.info__label { float: left; width: 100%; margin-bottom: 12px; font-size: var(--fs-micro); letter-spacing: 0.08em; text-transform: uppercase; }
+.info__label > span:first-child { color: var(--c-muted); }
+.info__guide { position: absolute; right: 0; top: 0; font-size: var(--fs-micro); }
+
+.colors { display: flex; gap: 10px; clear: both; }
+.color { position: relative; cursor: pointer; }
+.color input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.color span { display: block; width: 26px; height: 26px; border-radius: 50%; background: var(--sw); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15); transition: box-shadow var(--dur-fast) ease-out; }
+.color input:checked + span { box-shadow: 0 0 0 3px var(--c-limestone), 0 0 0 4px var(--c-ink); }
+.color input:focus-visible + span { outline: 1px solid var(--c-ink); outline-offset: 6px; }
+
+.sizes { display: grid; grid-template-columns: repeat(auto-fill, minmax(54px, 1fr)); gap: 6px; clear: both; }
+.size { position: relative; }
+.size input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.size span { display: grid; place-items: center; height: 44px; border: 1px solid var(--c-line); font-size: var(--fs-ui); font-variant-numeric: tabular-nums; }
+.size:hover span { border-color: var(--c-ink); }
+.size input:checked + span { background: var(--c-ink); color: var(--c-paper); border-color: var(--c-ink); }
+.size input:focus-visible + span { outline: 1px solid var(--c-ink); outline-offset: 2px; }
+.size.is-oos span { color: var(--c-muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+.size.is-oos input:checked + span { background: transparent; color: var(--c-ink); border-color: var(--c-ink); }
+.info__msg { min-height: 18px; margin-top: 8px; font-size: var(--fs-ui); color: var(--c-muted); }
+.info__msg.is-error { color: #8b2e24; }
+.info__ship { font-size: var(--fs-ui); margin-top: -8px; }
+
+.accs { border-bottom: 1px solid var(--c-line); margin-top: 8px; }
+.acc { border-top: 1px solid var(--c-line); }
+.acc summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0; font-size: var(--fs-ui); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary i { position: relative; width: 9px; height: 9px; }
+.acc summary i::before, .acc summary i::after { content: ''; position: absolute; left: 0; top: 4px; width: 9px; height: 1px; background: currentColor; transition: transform var(--dur-fast) ease-out; }
+.acc summary i::after { transform: rotate(90deg); }
+.acc[open] summary i::after { transform: rotate(0); }
+.acc__body { padding-bottom: 20px; display: grid; gap: 10px; font-size: var(--fs-sm); max-width: 52ch; }
+.care li::before { content: '— '; color: var(--c-muted); }
+
+/* Rails */
+.pdp-rail { margin-top: var(--section); padding-inline: var(--margin); }
+.pdp-rail + .pdp-rail { margin-top: clamp(72px, 9vw, 140px); }
+.pdp-rail__title { font-size: var(--fs-h3); margin-bottom: 22px; }
+.pdp-rail__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap); }
+
+/* Size guide */
+.guide { padding: 24px var(--margin); display: grid; gap: 22px; font-size: var(--fs-sm); overflow: auto; }
+.guide table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.guide th, .guide td { text-align: left; padding: 11px 8px 11px 0; border-bottom: 1px solid var(--c-line); font-weight: 400; }
+.guide thead th { font-size: var(--fs-micro); letter-spacing: 0.06em; text-transform: uppercase; color: var(--c-muted); }
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .gallery { grid-column: 1 / 8; }
+  .info { grid-column: 8 / 13; }
+}
+
+/* Mobile sticky add bar */
+.sticky-add { display: none; }
+
+@media (max-width: 1023px) {
+  .pdp { display: block; padding: 0; }
+  .gallery {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 4px;
+  }
+  .gallery::-webkit-scrollbar { display: none; }
+  .gallery__item { flex: 0 0 88%; scroll-snap-align: start; }
+  .gallery__counter { display: block; padding: 10px var(--margin) 0; color: var(--c-muted); }
+  .info__inner { position: static; padding: 20px var(--margin) 0; }
+  .pdp-rail__grid {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 46%;
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    margin-inline: calc(var(--margin) * -1); padding-inline: var(--margin); scroll-padding-inline: var(--margin);
+  }
+  .pdp-rail__grid > * { scroll-snap-align: start; }
+  .sticky-add {
+    position: fixed; inset: auto 0 0; z-index: 35;
+    display: flex; align-items: center; gap: 16px;
+    padding: 10px var(--margin) calc(10px + env(safe-area-inset-bottom));
+    background: var(--c-limestone); border-top: 1px solid var(--c-line);
+    transform: translateY(100%); transition: transform var(--dur-med) var(--ease-inout);
+    font-size: var(--fs-ui);
+  }
+  .sticky-add.is-visible { transform: none; }
+  .sticky-add > div { flex: 1; min-width: 0; }
+  .sticky-add__title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sticky-add .btn { width: auto; flex: none; min-height: 46px; }
+}
+@media (max-width: 639px) { .pdp-rail__grid { grid-auto-columns: 62%; } }

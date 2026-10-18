@@ -1,0 +1,37 @@
+:root {
+  /* Palette — sampled from the AW26 shoot and the logo */
+  --c-limestone: #e6e0d5;   /* site background: Tashkent limestone */
+  --c-limestone-2: #ddd6c9; /* image placeholder / subtle fills */
+  --c-ink: #1d202b;         /* text + primary button: night navy from the tracksuit */
+  --c-olive: #4e5440;       /* logo, selected states, hover */
+  --c-melange: #b4b1a9;     /* hairlines, disabled */
+  --c-oak: #8a6642;         /* tiny captions only */
+  --c-bordeaux: #39181c;    /* Bordeaux capsule block only */
+  --c-paper: #f2f0ea;       /* light text over imagery */
+  --c-muted: #5f5d58;       /* secondary text, 5.0:1 on limestone */
+  --c-line: rgba(29, 32, 43, 0.16);
+
+  --ff-display: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  --ff-ui: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+
+  --fs-micro: 0.6875rem; /* 11px */
+  --fs-ui: 0.75rem;      /* 12px */
+  --fs-sm: 0.8125rem;    /* 13px */
+  --fs-body: clamp(0.94rem, 0.9rem + 0.2vw, 1.03rem);
+  --fs-h3: clamp(1.5rem, 1.2rem + 1vw, 2.1rem);
+  --fs-h2: clamp(2.2rem, 1.4rem + 3.2vw, 4.6rem);
+  --fs-h1: clamp(2.8rem, 1.6rem + 5vw, 7.5rem);
+  --fs-mega: clamp(4.2rem, 15vw, 17rem);
+
+  --margin: clamp(16px, 1.8vw, 28px);
+  --gap: 8px;
+  --row-gap: clamp(28px, 3vw, 44px);
+  --header-h: 56px;
+  --section: clamp(96px, 14vw, 220px);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 200ms;
+  --dur-med: 650ms;
+  --dur-slow: 1100ms;
+}

@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "222fma", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev", "--prefix", "site"], "port": 5222 }
+  ]
+}
