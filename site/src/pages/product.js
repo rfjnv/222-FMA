@@ -3,7 +3,7 @@ import '../styles/catalog.css';
 import '../styles/product.css';
 import { products, bySlug, COLORS } from '../data/products.js';
 import { t, L, money, convert, state } from '../lib/i18n.js';
-import { picture, src } from '../lib/img.js';
+import { picture, src, srcset } from '../lib/img.js';
 import { cart } from '../lib/cart.js';
 import { createPanel } from '../lib/dialog.js';
 import { mountShell } from '../components/shell.js';
@@ -138,6 +138,13 @@ const addBtn = main.querySelector('.info__add');
 document.title = `${L(p.title)} — 222 FMA`;
 
 /* ---------- Color switching (updates gallery + URL) ---------- */
+// Warm the lead image of every colour so switching never flashes an empty frame.
+const warmColors = () => p.colors.forEach((c) => {
+  const im = new Image();
+  im.sizes = '(min-width: 1024px) 64vw, 92vw';
+  im.srcset = srcset(c.images[0].i);
+});
+(window.requestIdleCallback || ((fn) => setTimeout(fn, 1200)))(warmColors);
 main.querySelectorAll('input[name="color"]').forEach((input) => input.addEventListener('change', () => {
   color = p.colors.find((c) => c.key === input.value);
   main.querySelector('[data-color-name]').textContent = L(COLORS[color.key].name);
