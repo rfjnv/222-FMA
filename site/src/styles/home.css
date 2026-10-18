@@ -101,6 +101,9 @@
 .store__text { grid-column: 8 / 12; display: grid; gap: 18px; justify-items: start; }
 .store__text h2 { font-size: var(--fs-h2); }
 .store__text p { max-width: 40ch; }
+.store__contacts { font-style: normal; display: grid; gap: 4px; font-size: var(--fs-sm); }
+.store__contacts a { width: fit-content; }
+.store__links { display: flex; flex-wrap: wrap; gap: 10px 24px; }
 @media (max-width: 1023px) {
   .store { row-gap: 32px; }
   .store__img { grid-column: 1 / 9; }

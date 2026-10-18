@@ -8,6 +8,7 @@ import { cart } from '../lib/cart.js';
 import { createPanel } from '../lib/dialog.js';
 import { mountShell } from '../components/shell.js';
 import { productCard } from '../components/card.js';
+import { CONTACTS, ext } from '../data/contacts.js';
 
 const params = new URLSearchParams(location.search);
 const p = bySlug(params.get('p')) || products[0];
@@ -124,6 +125,7 @@ main.innerHTML = `
         <tbody>${Object.entries(guide.rows).map(([k, v]) => `<tr><th scope="row">${k}</th>${v.map((x) => `<td>${x}</td>`).join('')}</tr>`).join('')}</tbody>
       </table>
       ${p.model ? `<p>${L(p.model)}</p>` : ''}
+      <p>${t('guide.ask')} ${ext(CONTACTS.telegramAdmin.href, CONTACTS.telegramAdmin.handle)}</p>
     </div>
   </div>` : ''}
 `;

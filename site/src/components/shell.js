@@ -6,6 +6,7 @@ import { cart } from '../lib/cart.js';
 import { createPanel } from '../lib/dialog.js';
 import { picture } from '../lib/img.js';
 import { productCard } from './card.js';
+import { CONTACTS, ext } from '../data/contacts.js';
 
 const FREE_SHIPPING = 3000000;
 const LOCALE_LABEL = { ru: 'Русский', uz: 'Oʻzbekcha', en: 'English' };
@@ -93,9 +94,15 @@ function footerHTML() {
   <footer class="footer">
     <div class="footer__cols">
       <div><h2 class="footer__h">${t('footer.help')}</h2><ul><li><a class="u-link" href="#">${t('footer.delivery')}</a></li><li><a class="u-link" href="#">${t('footer.returns')}</a></li><li><a class="u-link" href="#">${t('footer.care')}</a></li></ul></div>
-      <div><h2 class="footer__h">${t('footer.company')}</h2><ul><li><a class="u-link" href="#">${t('footer.about')}</a></li><li><a class="u-link" href="/#store">${t('footer.store')}</a></li><li><a class="u-link" href="#">${t('footer.contacts')}</a></li></ul></div>
+      <div><h2 class="footer__h">${t('footer.company')}</h2><ul><li><a class="u-link" href="#">${t('footer.about')}</a></li><li><a class="u-link" href="/#store">${t('footer.store')}</a></li><li>${ext(CONTACTS.map, t('store.address'))}</li></ul></div>
       <div><h2 class="footer__h">${t('nav.all')}</h2><ul>${CATEGORIES.map((c) => `<li><a class="u-link" href="${catHref(c)}">${t(`nav.${c}`)}</a></li>`).join('')}</ul></div>
-      <div><h2 class="footer__h">Instagram · Telegram</h2><ul><li><a class="u-link" href="#">@222fma</a></li><li><button class="u-link" type="button" data-open="prefs">${LOCALE_LABEL[state.locale]} · ${state.currency}</button></li></ul></div>
+      <div><h2 class="footer__h">${t('footer.contacts')}</h2><ul>
+        <li><a class="u-link tnum" href="${CONTACTS.phoneHref}">${CONTACTS.phone}</a></li>
+        <li>${ext(CONTACTS.instagram.href, `Instagram ${CONTACTS.instagram.handle}`)}</li>
+        <li>${ext(CONTACTS.telegramChannel.href, `${t('footer.channel')} ${CONTACTS.telegramChannel.handle}`)}</li>
+        <li>${ext(CONTACTS.telegramAdmin.href, t('footer.admin'))}</li>
+        <li><button class="u-link" type="button" data-open="prefs">${LOCALE_LABEL[state.locale]} · ${state.currency}</button></li>
+      </ul></div>
     </div>
     <a class="footer__mark" href="/" aria-label="222 FMA">${logoCompact()}</a>
     <p class="footer__legal">${t('footer.legal')}</p>

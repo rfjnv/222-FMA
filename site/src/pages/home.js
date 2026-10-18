@@ -6,6 +6,7 @@ import { picture } from '../lib/img.js';
 import { gsap, ScrollTrigger, reducedMotion } from '../lib/motion.js';
 import { mountShell } from '../components/shell.js';
 import { productCard } from '../components/card.js';
+import { CONTACTS, ext } from '../data/contacts.js';
 
 const main = document.getElementById('main');
 main.classList.add('is-home');
@@ -77,8 +78,13 @@ main.innerHTML = `
     <div class="store__text">
       <h2 class="display" id="store-title">${t('store.title')}</h2>
       <p>${t('store.body')}</p>
-      <p class="muted">${t('store.hours')}</p>
-      <a class="u-link" href="#">${t('store.cta')}</a>
+      <address class="store__contacts">
+        <span>${t('store.address')}</span>
+        <span class="muted">${t('store.metro')}</span>
+        <span class="muted">${t('store.hours')}</span>
+        <a class="tnum" href="${CONTACTS.phoneHref}">${CONTACTS.phone}</a>
+      </address>
+      <p class="store__links">${ext(CONTACTS.map, t('store.cta'))}${ext(CONTACTS.telegramAdmin.href, t('store.write'))}</p>
     </div>
   </section>
 `;
