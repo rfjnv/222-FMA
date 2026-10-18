@@ -15,7 +15,8 @@ const desktop = mode === 'desktop';
 const viewport = desktop ? { width: 1440, height: 810 } : { width: 390, height: 693 };
 const dsf = desktop ? 1920 / 1440 : 1080 / 390;
 
-const browser = await chromium.launch({ channel: 'msedge' });
+// Headless screencast ignores the context DSF; force it at browser level to get full-res frames.
+const browser = await chromium.launch({ channel: 'msedge', args: [`--force-device-scale-factor=${dsf}`] });
 const ctx = await browser.newContext({ viewport, deviceScaleFactor: dsf, isMobile: !desktop, hasTouch: !desktop, locale: 'ru-RU' });
 
 // Visible cursor for desktop (headless has none); a soft tap ring on mobile.
@@ -121,7 +122,7 @@ if (desktop) {
   await page.evaluate(() => document.querySelector('.rail').scrollBy({ left: 260, behavior: 'smooth' })); await wait(1400);
   await scrollBy(1600, 3200);
   await wait(800);
-  await page.evaluate(() => scrollTo(0, 0)); await wait(300);
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' }); await wait(1800); // Lenis fights a programmatic jump to top
   await click('[data-open="menu"]'); await wait(1400);
   await click('#menu .menu-list a[href*="cat=men"]');
   await page.waitForLoadState('networkidle'); await wait(1200);
