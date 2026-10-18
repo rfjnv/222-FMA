@@ -18,7 +18,7 @@ export const logoFull = (cls = '') => logoSvg.replace('<svg ', `<svg class="${cl
 export const logoCompact = (cls = '') =>
   logoFull(cls).replace(/viewBox="[^"]*"/, 'viewBox="0 266 982 252"').replace(/width="\d+" height="\d+"/, '').replace(/<path id="emblem"[^>]*\/>/, '');
 
-const catHref = (c) => `/catalog.html?cat=${c}`;
+const catHref = (c) => `catalog.html?cat=${c}`;
 
 function headerHTML(page) {
   return `
@@ -30,7 +30,7 @@ function headerHTML(page) {
         ${CATEGORIES.map((c) => `<li><a class="u-link" href="${catHref(c)}">${t(`nav.${c}`)}</a></li>`).join('')}
       </ul>
     </nav>
-    <a class="header__logo" href="/" aria-label="222 FMA — ${t('nav.home')}">${logoCompact()}</a>
+    <a class="header__logo" href="./" aria-label="222 FMA — ${t('nav.home')}">${logoCompact()}</a>
     <div class="header__tools">
       <button class="u-link" type="button" data-open="search" aria-haspopup="dialog">${t('nav.search')}</button>
       <button class="u-link header__pref" type="button" data-open="prefs" aria-haspopup="dialog">${state.locale.toUpperCase()} · ${state.currency}</button>
@@ -45,7 +45,7 @@ function panelsHTML() {
   <div class="panel panel--left panel--menu" id="menu" role="dialog" aria-modal="true" aria-label="${t('nav.menu')}" hidden>
     <div class="panel__head"><span></span><button class="u-link" type="button" data-close>${t('nav.close')}</button></div>
     <ul class="menu-list">
-      ${[...CATEGORIES, 'all'].map((c) => `<li><a href="${c === 'all' ? '/catalog.html' : catHref(c)}">${t(`nav.${c}`)}</a></li>`).join('')}
+      ${[...CATEGORIES, 'all'].map((c) => `<li><a href="${c === 'all' ? 'catalog.html' : catHref(c)}">${t(`nav.${c}`)}</a></li>`).join('')}
     </ul>
     <div class="menu-foot">
       <button class="u-link" type="button" data-open="search">${t('nav.search')}</button>
@@ -56,7 +56,7 @@ function panelsHTML() {
   <div class="backdrop" hidden></div>
   <div class="panel panel--top panel--search" id="search" role="dialog" aria-modal="true" aria-label="${t('nav.search')}" hidden>
     <div class="panel__head"><span class="eyebrow">${t('nav.search')}</span><button class="u-link" type="button" data-close>${t('nav.close')}</button></div>
-    <form class="search-form" action="/catalog.html" role="search">
+    <form class="search-form" action="catalog.html" role="search">
       <label class="visually-hidden" for="q">${t('search.label')}</label>
       <input id="q" name="q" type="search" autocomplete="off" placeholder="${t('search.placeholder')}">
     </form>
@@ -94,7 +94,7 @@ function footerHTML() {
   <footer class="footer">
     <div class="footer__cols">
       <div><h2 class="footer__h">${t('footer.help')}</h2><ul><li><a class="u-link" href="#">${t('footer.delivery')}</a></li><li><a class="u-link" href="#">${t('footer.returns')}</a></li><li><a class="u-link" href="#">${t('footer.care')}</a></li></ul></div>
-      <div><h2 class="footer__h">${t('footer.company')}</h2><ul><li><a class="u-link" href="#">${t('footer.about')}</a></li><li><a class="u-link" href="/#store">${t('footer.store')}</a></li><li>${ext(CONTACTS.map, t('store.address'))}</li></ul></div>
+      <div><h2 class="footer__h">${t('footer.company')}</h2><ul><li><a class="u-link" href="#">${t('footer.about')}</a></li><li><a class="u-link" href="./#store">${t('footer.store')}</a></li><li>${ext(CONTACTS.map, t('store.address'))}</li></ul></div>
       <div><h2 class="footer__h">${t('nav.all')}</h2><ul>${CATEGORIES.map((c) => `<li><a class="u-link" href="${catHref(c)}">${t(`nav.${c}`)}</a></li>`).join('')}</ul></div>
       <div><h2 class="footer__h">${t('footer.contacts')}</h2><ul>
         <li><a class="u-link tnum" href="${CONTACTS.phoneHref}">${CONTACTS.phone}</a></li>
@@ -104,7 +104,7 @@ function footerHTML() {
         <li><button class="u-link" type="button" data-open="prefs">${LOCALE_LABEL[state.locale]} · ${state.currency}</button></li>
       </ul></div>
     </div>
-    <a class="footer__mark" href="/" aria-label="222 FMA">${logoCompact()}</a>
+    <a class="footer__mark" href="./" aria-label="222 FMA">${logoCompact()}</a>
     <p class="footer__legal">${t('footer.legal')}</p>
   </footer>`;
 }
@@ -115,9 +115,9 @@ function cartLineHTML(l) {
   const key = cart.key(l);
   return `
   <li class="cart-line">
-    <a class="cart-line__media" href="/product.html?p=${p.handle}&c=${color.key}" tabindex="-1" aria-hidden="true">${picture(color.images[0], { sizes: '96px', crop: true })}</a>
+    <a class="cart-line__media" href="product.html?p=${p.handle}&c=${color.key}" tabindex="-1" aria-hidden="true">${picture(color.images[0], { sizes: '96px', crop: true })}</a>
     <div class="cart-line__info">
-      <a class="cart-line__title u-link" href="/product.html?p=${p.handle}&c=${color.key}">${L(p.title)}</a>
+      <a class="cart-line__title u-link" href="product.html?p=${p.handle}&c=${color.key}">${L(p.title)}</a>
       <p class="muted">${L(COLORS[color.key].name)} · ${t('cart.size')} ${l.size}</p>
       <div class="cart-line__row">
         <div class="qty" role="group" aria-label="${t('cart.qty')}">
@@ -136,7 +136,7 @@ function renderCart() {
   const body = document.querySelector('[data-cart-body]');
   document.querySelectorAll('[data-bag-count]').forEach((n) => (n.textContent = `(${cart.count})`));
   if (!cart.lines.length) {
-    body.innerHTML = `<div class="cart__empty"><p>${t('cart.empty')}</p><a class="btn btn--line" href="/catalog.html">${t('cart.toShop')}</a></div>`;
+    body.innerHTML = `<div class="cart__empty"><p>${t('cart.empty')}</p><a class="btn btn--line" href="catalog.html">${t('cart.toShop')}</a></div>`;
     return;
   }
   const left = Math.max(FREE_SHIPPING - cart.subtotal, 0);
@@ -158,7 +158,7 @@ function searchResults(q) {
   const hits = searchProducts(query);
   box.innerHTML = hits.length
     ? `<div class="search-grid">${hits.slice(0, 4).map((p) => productCard(p, { sizes: '(min-width: 1024px) 20vw, 50vw' })).join('')}</div>
-       <a class="u-link" href="/catalog.html?q=${encodeURIComponent(q.trim())}">${t('search.all')} (${hits.length})</a>`
+       <a class="u-link" href="catalog.html?q=${encodeURIComponent(q.trim())}">${t('search.all')} (${hits.length})</a>`
     : `<p class="muted">${t('search.none', { q })}</p>`;
 }
 

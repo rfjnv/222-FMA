@@ -54,11 +54,11 @@ function filter(s) {
 
 /* Campaign frames interleaved into the grid, per category. */
 const TILES = {
-  all: { i: 13, fy: 0.45, label: 'hero.capsule', href: '/catalog.html?cat=men' },
-  men: { i: 46, fy: 0.4, label: 'spread.title', href: '/product.html?p=merino-zip-cardigan' },
-  women: { i: 15, fy: 0.4, label: 'hero.capsule', href: '/product.html?p=track-jacket-women' },
-  knit: { i: 41, fy: 0.45, label: 'spread.title', href: '/product.html?p=cable-quarter-zip' },
-  'shoes-acc': { i: 50, fy: 0.5, label: 'hero.season', href: '/product.html?p=crossbody-bag' },
+  all: { i: 13, fy: 0.45, label: 'hero.capsule', href: 'catalog.html?cat=men' },
+  men: { i: 46, fy: 0.4, label: 'spread.title', href: 'product.html?p=merino-zip-cardigan' },
+  women: { i: 15, fy: 0.4, label: 'hero.capsule', href: 'product.html?p=track-jacket-women' },
+  knit: { i: 41, fy: 0.45, label: 'spread.title', href: 'product.html?p=cable-quarter-zip' },
+  'shoes-acc': { i: 50, fy: 0.5, label: 'hero.season', href: 'product.html?p=crossbody-bag' },
 };
 
 /* ---------- Render ---------- */
@@ -67,10 +67,10 @@ let s = readState();
 main.innerHTML = `
   <div class="plp">
     <header class="plp__head">
-      <nav class="crumbs" aria-label="Breadcrumb"><a class="u-link" href="/">222 FMA</a><span aria-hidden="true">/</span><span data-crumb></span></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a class="u-link" href="./">222 FMA</a><span aria-hidden="true">/</span><span data-crumb></span></nav>
       <h1 class="plp__title display"><span data-title></span> <sup class="plp__count tnum" data-count></sup></h1>
       <ul class="plp__cats" aria-label="${t('plp.category')}">
-        ${['all', ...CATEGORIES].map((c) => `<li><a class="u-link" data-cat="${c}" href="/catalog.html${c === 'all' ? '' : `?cat=${c}`}">${t(`nav.${c}`)}</a></li>`).join('')}
+        ${['all', ...CATEGORIES].map((c) => `<li><a class="u-link" data-cat="${c}" href="catalog.html${c === 'all' ? '' : `?cat=${c}`}">${t(`nav.${c}`)}</a></li>`).join('')}
       </ul>
     </header>
     <div class="plp__bar">

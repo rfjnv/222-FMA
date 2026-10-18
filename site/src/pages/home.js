@@ -30,31 +30,31 @@ main.innerHTML = `
       </h1>
       <div class="hero__meta">
         <p class="u-caption">${t('hero.capsule')} · ${t('hero.items')}</p>
-        <a class="u-link" href="/catalog.html?cat=men">${t('hero.cta')}</a>
+        <a class="u-link" href="catalog.html?cat=men">${t('hero.cta')}</a>
       </div>
     </div>
   </section>
 
   <section class="spread grid" aria-labelledby="spread-title">
     <figure class="spread__small media">${picture({ i: 30 }, { alt: 'Молния и стойка джемпера из мериноса, макро', sizes: '(min-width: 1024px) 24vw, 46vw' })}</figure>
-    <a class="spread__big media" href="/product.html?p=merino-zip-cardigan" aria-label="${L(bySlug('merino-zip-cardigan').title)}">${picture({ i: 46 }, { alt: 'Кардиган на молнии из мериноса цвета экрю в бутике 222 FMA', sizes: '(min-width: 1024px) 48vw, 100vw' })}</a>
+    <a class="spread__big media" href="product.html?p=merino-zip-cardigan" aria-label="${L(bySlug('merino-zip-cardigan').title)}">${picture({ i: 46 }, { alt: 'Кардиган на молнии из мериноса цвета экрю в бутике 222 FMA', sizes: '(min-width: 1024px) 48vw, 100vw' })}</a>
     <div class="spread__text">
       <h2 class="display spread__title" id="spread-title">${t('spread.title')}</h2>
       <p>${t('spread.body')}</p>
-      <a class="u-link" href="/catalog.html?cat=knit">${t('spread.cta')}</a>
+      <a class="u-link" href="catalog.html?cat=knit">${t('spread.cta')}</a>
     </div>
   </section>
 
   <section class="newin" aria-labelledby="new-title">
     <div class="section-head">
       <h2 class="display section-head__title" id="new-title">${t('new.title')}</h2>
-      <a class="u-link" href="/catalog.html?sort=new">${t('new.cta')}</a>
+      <a class="u-link" href="catalog.html?sort=new">${t('new.cta')}</a>
     </div>
     <div class="rail">${newIn.map((p) => productCard(p, { sizes: '(min-width: 1024px) 33vw, 72vw' })).join('')}</div>
   </section>
 
   <section class="bordeaux" aria-labelledby="bordeaux-title">
-    <a class="bordeaux__full" href="/product.html?p=zip-hoodie-kvartal&c=bordeaux">
+    <a class="bordeaux__full" href="product.html?p=zip-hoodie-kvartal&c=bordeaux">
       ${picture({ i: 47, fy: 0.3 }, { alt: 'Костюм цвета бордо, вид сзади, у ажурной ограды в Ташкенте', sizes: '100vw' })}
       <span class="bordeaux__cap u-caption">${t('bordeaux.capsule')}</span>
     </a>
@@ -66,10 +66,10 @@ main.innerHTML = `
       <h2 class="display" id="bordeaux-title">${t('bordeaux.capsule')}</h2>
       <p>${t('bordeaux.line')}</p>
       <ul class="bordeaux__items">
-        <li><a class="u-row" href="/product.html?p=${hoodie.handle}&c=bordeaux"><span>${L(hoodie.title)}</span><span class="tnum">${money(hoodie.price)}</span></a></li>
-        <li><a class="u-row" href="/product.html?p=${trousers.handle}&c=bordeaux"><span>${L(trousers.title)}</span><span class="tnum">${money(trousers.price)}</span></a></li>
+        <li><a class="u-row" href="product.html?p=${hoodie.handle}&c=bordeaux"><span>${L(hoodie.title)}</span><span class="tnum">${money(hoodie.price)}</span></a></li>
+        <li><a class="u-row" href="product.html?p=${trousers.handle}&c=bordeaux"><span>${L(trousers.title)}</span><span class="tnum">${money(trousers.price)}</span></a></li>
       </ul>
-      <a class="u-link" href="/product.html?p=${hoodie.handle}&c=bordeaux">${t('bordeaux.cta')}</a>
+      <a class="u-link" href="product.html?p=${hoodie.handle}&c=bordeaux">${t('bordeaux.cta')}</a>
     </div>
   </section>
 

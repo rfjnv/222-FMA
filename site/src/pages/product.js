@@ -67,8 +67,8 @@ main.innerHTML = `
     <div class="info">
       <div class="info__inner">
         <nav class="crumbs" aria-label="Breadcrumb">
-          <a class="u-link" href="/">222 FMA</a><span aria-hidden="true">/</span>
-          <a class="u-link" href="/catalog.html?cat=${catParam}">${t(catLabel)}</a>
+          <a class="u-link" href="./">222 FMA</a><span aria-hidden="true">/</span>
+          <a class="u-link" href="catalog.html?cat=${catParam}">${t(catLabel)}</a>
         </nav>
         <h1 class="info__title display">${L(p.title)}</h1>
         <p class="info__price tnum">${money(p.price)}</p>
@@ -220,7 +220,7 @@ const ld = [
   {
     '@context': 'https://schema.org', '@type': 'Product',
     name: L(p.title), description: L(p.description), brand: { '@type': 'Brand', name: '222 FMA' },
-    image: color.images.map((im) => new URL(src(im.i, 1600), location.origin).href),
+    image: color.images.map((im) => new URL(src(im.i, 1600), location.href).href),
     color: L(COLORS[color.key].name), material: L(p.composition), sku: `${p.handle}-${color.key}`,
     offers: {
       '@type': 'Offer', priceCurrency: state.currency, price: convert(p.price),
@@ -231,8 +231,8 @@ const ld = [
   {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '222 FMA', item: `${location.origin}/` },
-      { '@type': 'ListItem', position: 2, name: t(catLabel), item: `${location.origin}/catalog.html?cat=${catParam}` },
+      { '@type': 'ListItem', position: 1, name: '222 FMA', item: new URL('./', location.href).href },
+      { '@type': 'ListItem', position: 2, name: t(catLabel), item: new URL(`catalog.html?cat=${catParam}`, location.href).href },
       { '@type': 'ListItem', position: 3, name: L(p.title) },
     ],
   },

@@ -12,4 +12,6 @@ npm run dev        # http://localhost:5222
 - `site/public/img/` — WebP renditions (480/960/1600) generated from `media/`
 - `site/scripts/shots.mjs` — critique screenshots at 1440/1024/390 via installed Edge (`playwright-core`)
 
+Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main` (relative `base: './'`, so it also works on any static host root). Pages are `noindex` — this is a pitch prototype, not the official store.
+
 Prices, exchange rates, stock and the boutique address are placeholders for the presentation.

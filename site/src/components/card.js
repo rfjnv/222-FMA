@@ -9,7 +9,7 @@ export function productCard(p, { sizes = '(min-width: 1024px) 33vw, 50vw', color
   const color = p.colors.find((c) => c.key === colorKey) || p.colors[0];
   const [a, b] = color.images;
   const lowStock = p.sizes.filter((s) => s.inStock).length <= 2;
-  const href = `/product.html?p=${p.handle}${color !== p.colors[0] ? `&c=${color.key}` : ''}`;
+  const href = `product.html?p=${p.handle}${color !== p.colors[0] ? `&c=${color.key}` : ''}`;
   return `
   <article class="card">
     <a class="card__link" href="${href}">

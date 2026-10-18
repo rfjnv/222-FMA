@@ -2,7 +2,7 @@
 // /img/fNN-{480,960,1600}.webp by the build script.
 const pad = (i) => String(i).padStart(2, '0');
 
-export const src = (i, w = 960) => `/img/f${pad(i)}-${w}.webp`;
+export const src = (i, w = 960) => `img/f${pad(i)}-${w}.webp`;
 
 export const srcset = (i) => [480, 960, 1600].map((w) => `${src(i, w)} ${w}w`).join(', ');
 
